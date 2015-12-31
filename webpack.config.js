@@ -1,3 +1,4 @@
+var webpack = require('webpack');
 var rucksack = require('rucksack-css')
 var webpack = require("webpack")
 
@@ -36,6 +37,9 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js')
+  ],
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
@@ -45,7 +49,6 @@ module.exports = {
     })
   ],
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js'),
     new webpack.DefinePlugin({ 
       'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development') } 
     })
